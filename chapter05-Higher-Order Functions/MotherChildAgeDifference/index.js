@@ -29,12 +29,18 @@
     };
 
     function averageAgeMothers(array, women) {
+        var length = array.length;
         var sumAge = array.reduce(function (res, person) {
 
-            return res + findMotherAge(person, women[person.mother]);
+            if(women.hasOwnProperty(person.mother)) {
+                return res + findMotherAge(person, women[person.mother]);
+            }
+
+            length -= 1;
+            return res;
         }, 0);
 
-        return sumAge / array.length;
+        return sumAge / length;
     };
 
     function age(obj) {
